@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\AnimalRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: AnimalRepository::class)]
@@ -36,18 +37,21 @@ class Animal
     #[ORM\Column(nullable: true)]
     private ?int $gestation_period = null;
 
-    #[ORM\ManyToMany(targetEntity: Origin::class, mappedBy: 'country')]
-    private Collection $origins;
-
     #[ORM\ManyToOne(inversedBy: 'name')]
     private ?Family $family = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $picture = null;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $description = null;
+
+    #[ORM\ManyToMany(targetEntity: Origin::class, inversedBy: 'animals')]
+    private Collection $origin;
+
     public function __construct()
     {
-        $this->origins = new ArrayCollection();
+        $this->origin = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -153,33 +157,6 @@ class Animal
         return $this;
     }
 
-    /**
-     * @return Collection<int, Origin>
-     */
-    public function getOrigins(): Collection
-    {
-        return $this->origins;
-    }
-
-    public function addOrigin(Origin $origin): static
-    {
-        if (!$this->origins->contains($origin)) {
-            $this->origins->add($origin);
-            $origin->addCountry($this);
-        }
-
-        return $this;
-    }
-
-    public function removeOrigin(Origin $origin): static
-    {
-        if ($this->origins->removeElement($origin)) {
-            $origin->removeCountry($this);
-        }
-
-        return $this;
-    }
-
     public function getPicture(): ?string
     {
         return $this->picture;
@@ -188,6 +165,42 @@ class Animal
     public function setPicture(?string $picture): static
     {
         $this->picture = $picture;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): static
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Origin>
+     */
+    public function getOrigin(): Collection
+    {
+        return $this->origin;
+    }
+
+    public function addOrigin(Origin $origin): static
+    {
+        if (!$this->origin->contains($origin)) {
+            $this->origin->add($origin);
+        }
+
+        return $this;
+    }
+
+    public function removeOrigin(Origin $origin): static
+    {
+        $this->origin->removeElement($origin);
 
         return $this;
     }

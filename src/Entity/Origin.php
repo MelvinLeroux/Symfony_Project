@@ -15,12 +15,20 @@ class Origin
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToMany(targetEntity: Animal::class, inversedBy: 'origins')]
-    private Collection $country;
+    #[ORM\ManyToMany(targetEntity: Animal::class, mappedBy: 'origin')]
+    private Collection $animals;
+
+    #[ORM\Column(length: 255)]
+    private ?string $country = null;
 
     public function __construct()
     {
-        $this->country = new ArrayCollection();
+        $this->animals = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->country;
     }
 
     public function getId(): ?int
@@ -31,24 +39,40 @@ class Origin
     /**
      * @return Collection<int, Animal>
      */
-    public function getCountry(): Collection
+    public function getAnimals(): Collection
     {
-        return $this->country;
+        return $this->animals;
     }
 
-    public function addCountry(Animal $country): static
+    public function addAnimal(Animal $animal): static
     {
-        if (!$this->country->contains($country)) {
-            $this->country->add($country);
+        if (!$this->animals->contains($animal)) {
+            $this->animals->add($animal);
+            $animal->addOrigin($this);
         }
 
         return $this;
     }
 
-    public function removeCountry(Animal $country): static
+    public function removeAnimal(Animal $animal): static
     {
-        $this->country->removeElement($country);
+        if ($this->animals->removeElement($animal)) {
+            $animal->removeOrigin($this);
+        }
 
         return $this;
     }
+
+    public function getCountry(): ?string
+    {
+        return $this->country;
+    }
+
+    public function setCountry(string $country): static
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
 }
