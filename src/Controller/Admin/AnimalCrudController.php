@@ -40,7 +40,7 @@ class AnimalCrudController extends AbstractCrudController
                 'Omnivore' => 'omnivore',
                 'Autre' => 'autre',
                 ])->allowMultipleChoices(false),
-            IntegerField::new('gestation_period', "Gestation en mois"),
+            IntegerField::new('gestation', "Gestation en mois"),
             UrlField::new('picture', "Image"),
             AssociationField::new('origin', "Origines"),
             

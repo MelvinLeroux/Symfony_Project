@@ -4,7 +4,7 @@
 
 {% block body %}
 
-{% for currentAnimal in animalList %}
+{% for currentAnimal in animals %}
 
 <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm bg-white position-relative">
     <div class="col-4 animal__poster" style="background-image: url({{ currentAnimal.picture }});">
@@ -24,13 +24,15 @@
             <p>Espérance de vie : {{ currentAnimal.lifespan }}ans</p>
             <p>Taille : {{ currentAnimal.height }} cm</p>
             <p>Poids : {{ currentAnimal.weight }} kg</p>
-            <p>Période de gestation : {{ currentAnimal.gestation_period }} mois </p>
+            <p>Période de gestation : {{ currentAnimal.gestation }} mois </p>
             </div>
         </div>
         {# <a href="{{ path('app_animal_show', {id: currentAnimal.id}) }}" class="fs-1 mt-3 text-danger align-self-start"> #}
             <i class="bi bi-arrow-right-square"></i>
         </a>
     </div>
+
 </div>
 {% endfor %}
+            <a class="btn btn-lg btn-warning" href="{{ path('app_animal_new') }}">Ajouter un nouvel animal</a>
 {% endblock %}
