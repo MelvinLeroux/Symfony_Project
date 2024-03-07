@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Animaux{% endblock %}
+
+{% block body %}
+
+{% for currentAnimal in animals %}
+
+<div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm bg-white position-relative">
+    <div class="col-4 animal__poster" style="background-image: url({{ currentAnimal.picture }});">
+        <img src="{{ asset('images/poster-placeholder.png') }}" class="img-fluid">
+        <!-- img src="https://m.media-amazon.com/images/M/MV5BNThmZGY4NzgtMTM4OC00NzNkLWEwNmEtMjdhMGY5YTc1NDE4XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg" class="img-fluid" -->
+    </div>
+    <div class="col-8 p-4 d-flex flex-column position-static">
+        
+        {# {% include('front/animal/_partials/_favorite_button.html.twig') %} #}
+
+        <h3 class="mb-1">{{ currentAnimal.name }}</h3>
+        <div class="mb-1 text-muted">{{ currentAnimal.lifestyle }}</div>
+        <div class="mb-1 text-muted">{{ currentAnimal.diet }} </div>
+        <p><small>{{ currentAnimal.description }}</small>
+        </p>
+        {# todo afficher le bon nombre d'étoiles en fonction du rating #}
+            <p>Espérance de vie : {{ currentAnimal.lifespan }}ans</p>
+            <p>Taille : {{ currentAnimal.height }} cm</p>
+            <p>Poids : {{ currentAnimal.weight }} kg</p>
+            <p>Période de gestation : {{ currentAnimal.gestation }} mois </p>
+            </div>
+        </div>
+        {# <a href="{{ path('app_animal_show', {id: currentAnimal.id}) }}" class="fs-1 mt-3 text-danger align-self-start"> #}
+            <i class="bi bi-arrow-right-square"></i>
+        </a>
+    </div>
+
+</div>
+{% endfor %}
+            <a class="btn btn-lg btn-warning" href="{{ path('app_animal_new') }}">Ajouter un nouvel animal</a>
+{% endblock %}

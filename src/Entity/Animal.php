@@ -34,8 +34,6 @@ class Animal
     #[ORM\Column(length: 50)]
     private ?string $diet = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $gestation_period = null;
 
     #[ORM\ManyToOne(inversedBy: 'name')]
     private ?Family $family = null;
@@ -48,6 +46,9 @@ class Animal
 
     #[ORM\ManyToMany(targetEntity: Origin::class, inversedBy: 'animals')]
     private Collection $origin;
+
+    #[ORM\Column(type: Types::DECIMAL, precision: 5, scale: 2, nullable: true)]
+    private ?string $gestation = null;
 
     public function __construct()
     {
@@ -145,17 +146,7 @@ class Animal
         return $this;
     }
 
-    public function getGestationPeriod(): ?int
-    {
-        return $this->gestation_period;
-    }
 
-    public function setGestationPeriod(?int $gestation_period): static
-    {
-        $this->gestation_period = $gestation_period;
-
-        return $this;
-    }
 
     public function getPicture(): ?string
     {
@@ -201,6 +192,18 @@ class Animal
     public function removeOrigin(Origin $origin): static
     {
         $this->origin->removeElement($origin);
+
+        return $this;
+    }
+
+    public function getGestation(): ?string
+    {
+        return $this->gestation;
+    }
+
+    public function setGestation(?string $gestation): static
+    {
+        $this->gestation = $gestation;
 
         return $this;
     }

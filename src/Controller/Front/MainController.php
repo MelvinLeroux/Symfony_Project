@@ -14,7 +14,7 @@ class MainController extends AbstractController
     public function index(AnimalRepository $animalRepository): Response
     {
         $allAnimals = $animalRepository->findAll();
-        return $this->render('main/index.html.twig', [
+        return $this->render('front/main/index.html.twig', [
             'animalList' => $allAnimals
         ]);
     }
