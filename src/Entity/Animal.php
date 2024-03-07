@@ -145,12 +145,12 @@ class Animal
         return $this;
     }
 
-    public function getGestationPeriod(): ?int
+    public function getgestation_period(): ?int
     {
         return $this->gestation_period;
     }
 
-    public function setGestationPeriod(?int $gestation_period): static
+    public function setgestation_period(?int $gestation_period): static
     {
         $this->gestation_period = $gestation_period;
 
