@@ -52,7 +52,7 @@
 
     <a href="{{ path('app_animals_index') }}">back to list</a>
 
-    <a href="{{ path('app_animal_edit', {'id': animal.id}) }}">edit</a>
+    <a href="{{ path('app_animals_edit', {'id': animal.id}) }}">edit</a>
 
     {{ include('front/animal/_delete_form.html.twig') }}
 {% endblock %}

@@ -55,10 +55,10 @@ class AnimalType extends AbstractType
             ->add('gestation',IntegerType::class,[
                 "label"=>"Durée de gestation"
             ])
-            ->add('family', EntityType::class, [
-                'class' => Family::class,
-                'choice_label' => 'id',
-            ])
+            // ->add('family', EntityType::class, [
+            //     'class' => Family::class,
+            //     'choice_label' => 'id',
+            // ])
             ->add('origin', EntityType::class, [
                 'class' => Origin::class,
                 'choice_label' => 'country',
