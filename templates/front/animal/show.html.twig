@@ -3,40 +3,38 @@
 {% block title %}Animal{% endblock %}
 
 {% block body %}
-    <h1>Animal</h1>
+<div class="container">
+    <h1>{{ animal.name }}</h1>
+    <a class="btn btn-lg btn-secondary mt-2 mb-2" href="{{ path('app_animals_index') }}">back to list</a>
 
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ animal.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
+                <th>Nom</th>
                 <td>{{ animal.name }}</td>
             </tr>
             <tr>
-                <th>Lifespan</th>
-                <td>{{ animal.lifespan }}</td>
+                <th>Espérance de vie </th>
+                <td>{{ animal.lifespan }} ans</td>
             </tr>
             <tr>
-                <th>Weight</th>
-                <td>{{ animal.weight }}</td>
+                <th>Poids</th>
+                <td>{{ animal.weight }} kg</td>
             </tr>
             <tr>
-                <th>Height</th>
-                <td>{{ animal.height }}</td>
+                <th>Taille</th>
+                <td>{{ animal.height }} cm</td>
             </tr>
             <tr>
-                <th>Lifestyle</th>
+                <th>Mode de vie</th>
                 <td>{{ animal.lifestyle }}</td>
             </tr>
             <tr>
-                <th>Diet</th>
+                <th>Régime alimentaire</th>
                 <td>{{ animal.diet }}</td>
             </tr>
             <tr>
-                <th>Picture</th>
+                <th>Image</th>
                 <td>{{ animal.picture }}</td>
             </tr>
             <tr>
@@ -44,15 +42,14 @@
                 <td>{{ animal.description }}</td>
             </tr>
             <tr>
-                <th>Gestation</th>
-                <td>{{ animal.gestation }}</td>
+                <th>Durée de gestation</th>
+                <td>{{ animal.gestation }} mois</td>
             </tr>
         </tbody>
     </table>
+    <a class="btn btn-lg btn-warning mt-2 mb-2" href="{{ path('app_animal_edit', {'id': animal.id}) }}">edit</a>
+</div>
 
-    <a href="{{ path('app_animals_index') }}">back to list</a>
-
-    <a href="{{ path('app_animals_edit', {'id': animal.id}) }}">edit</a>
 
     {{ include('front/animal/_delete_form.html.twig') }}
 {% endblock %}

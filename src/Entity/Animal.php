@@ -75,18 +75,6 @@ class Animal
         return $this;
     }
 
-    // public function getFamily(): ?string
-    // {
-    //     return $this->family;
-    // }
-
-    // public function setFamily(?string $family): static
-    // {
-    //     $this->family = $family;
-
-    //     return $this;
-    // }
-
     
 
     public function getLifespan(): ?int
