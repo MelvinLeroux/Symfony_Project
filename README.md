@@ -43,14 +43,14 @@ This project uses:
 ### TODO
 
 #### Back
-- [] API-REST
-- [] Fixtures
-- [] Authorizations
-- [] Constraints
+- [ ] API-REST
+- [ ] Fixtures
+- [ ] Authorizations
+- [ ] Constraints
 - ...
 
 #### front
-- [] display conditions
-- [] Design
+- [ ] display conditions
+- [ ] Design
 - ...
 
