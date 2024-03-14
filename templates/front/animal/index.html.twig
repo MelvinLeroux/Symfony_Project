@@ -29,7 +29,11 @@
                 <p>Période de gestation : {{ currentAnimal.gestation }} mois </p>
                 </div>
             </div>
-            <a class="btn btn-lg btn-warning" href="{{ path('app_animal_new') }}">Ajouter un nouvel animal</a>
+            {% if app.user %}
+                <a class="btn btn-lg btn-warning" href="{{ path('app_animal_new') }}">Ajouter un nouvel animal</a>
+            {% else %}
+            
+            {% endif %}
         </div>
 
     </div>

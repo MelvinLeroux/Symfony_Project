@@ -47,7 +47,10 @@
             </tr>
         </tbody>
     </table>
-    <a class="btn btn-lg btn-warning mt-2 mb-2" href="{{ path('app_animal_edit', {'id': animal.id}) }}">edit</a>
+    {% if app.user %}
+        <a class="btn btn-lg btn-warning mt-2 mb-2" href="{{ path('app_animal_edit', {'id': animal.id}) }}">edit</a>
+    {% else %}
+    {% endif %}
 </div>
 
 
