@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Animal;
+use Doctrine\DBAL\Types\FloatType;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -12,6 +13,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 class AnimalCrudController extends AbstractCrudController
 {
@@ -40,9 +43,10 @@ class AnimalCrudController extends AbstractCrudController
                 'Omnivore' => 'omnivore',
                 'Autre' => 'autre',
                 ])->allowMultipleChoices(false),
-            IntegerField::new('gestation', "Gestation en mois"),
+            NumberField::new('gestation', "Gestation en mois"),
             UrlField::new('picture', "Image"),
             AssociationField::new('origin', "Origines"),
+            AssociationField::new('family', "Famille")
             
         ];
     }

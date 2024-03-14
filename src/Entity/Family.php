@@ -15,12 +15,20 @@ class Family
     #[ORM\Column]
     private ?int $id = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $name = null;
+
     #[ORM\OneToMany(targetEntity: Animal::class, mappedBy: 'family')]
-    private Collection $name;
+    private Collection $animals;
 
     public function __construct()
     {
-        $this->name = new ArrayCollection();
+        $this->animals = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 
     public function getId(): ?int
@@ -28,30 +36,42 @@ class Family
         return $this->id;
     }
 
-    /**
-     * @return Collection<int, Animal>
-     */
-    public function getName(): Collection
+    public function getName(): ?string
     {
         return $this->name;
     }
 
-    public function addName(Animal $name): static
+    public function setName(string $name): static
     {
-        if (!$this->name->contains($name)) {
-            $this->name->add($name);
-            $name->setFamily($this);
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Animal>
+     */
+    public function getAnimals(): Collection
+    {
+        return $this->animals;
+    }
+
+    public function addAnimal(Animal $animal): static
+    {
+        if (!$this->animals->contains($animal)) {
+            $this->animals->add($animal);
+            $animal->setFamily($this);
         }
 
         return $this;
     }
 
-    public function removeName(Animal $name): static
+    public function removeAnimal(Animal $animal): static
     {
-        if ($this->name->removeElement($name)) {
+        if ($this->animals->removeElement($animal)) {
             // set the owning side to null (unless already changed)
-            if ($name->getFamily() === $this) {
-                $name->setFamily(null);
+            if ($animal->getFamily() === $this) {
+                $animal->setFamily(null);
             }
         }
 

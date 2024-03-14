@@ -3,11 +3,11 @@
 {% block title %}Edit Animal{% endblock %}
 
 {% block body %}
-    <h1>Edit Animal</h1>
+    <h1>Mettre à jour {{animal.name}}</h1>
 
-    {{ include('front/animal/_form.html.twig', {'button_label': 'Update'}) }}
+    <a class="btn btn-lg btn-secondary mt-2 mb-2" href="{{ path('app_animals_index') }}">Retour</a>
+    {{ include('front/animal/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
 
-    <a href="{{ path('app_animals_index') }}">back to list</a>
 
     {{ include('front/animal/_delete_form.html.twig') }}
 {% endblock %}

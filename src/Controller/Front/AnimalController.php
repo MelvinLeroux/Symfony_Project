@@ -33,7 +33,7 @@ class AnimalController extends AbstractController
             $entityManager->persist($animal);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_animal_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_animals_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('front/animal/new.html.twig', [
@@ -59,7 +59,7 @@ class AnimalController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_animal_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_animals_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('front/animal/edit.html.twig', [

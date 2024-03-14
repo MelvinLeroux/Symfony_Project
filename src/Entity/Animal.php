@@ -35,8 +35,8 @@ class Animal
     private ?string $diet = null;
 
 
-    #[ORM\ManyToOne(inversedBy: 'name')]
-    private ?Family $family = null;
+    // #[ORM\ManyToOne(inversedBy: 'name')]
+    // private ?Family $family = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $picture = null;
@@ -49,6 +49,9 @@ class Animal
 
     #[ORM\Column(type: Types::DECIMAL, precision: 5, scale: 2, nullable: true)]
     private ?string $gestation = null;
+
+    #[ORM\ManyToOne(inversedBy: 'animals')]
+    private ?Family $family = null;
 
     public function __construct()
     {
@@ -68,18 +71,6 @@ class Animal
     public function setName(string $name): static
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getFamily(): ?string
-    {
-        return $this->family;
-    }
-
-    public function setFamily(?string $family): static
-    {
-        $this->family = $family;
 
         return $this;
     }
@@ -204,6 +195,18 @@ class Animal
     public function setGestation(?string $gestation): static
     {
         $this->gestation = $gestation;
+
+        return $this;
+    }
+
+    public function getFamily(): ?Family
+    {
+        return $this->family;
+    }
+
+    public function setFamily(?Family $family): static
+    {
+        $this->family = $family;
 
         return $this;
     }

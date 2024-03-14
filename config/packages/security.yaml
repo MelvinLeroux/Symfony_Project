@@ -36,14 +36,11 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        - { path: ^/admin.*, roles: ROLE_ADMIN }
-        # bloquer toutes les routes delete (route qui commence par back, peut importe au milieu et qui a un chiffre à la fin)
-        # on finit toujours par la route la plus généraliste
-        - { path: ^/admin, roles: ROLE_MANAGER}
-# pour que l'admin hérite des mêmes droits que le manager -> role_hierarchy
-# admin = aussi manager
+    - { path: ^/admin.*, roles: ROLE_MANAGER }
+
     role_hierarchy:
         ROLE_ADMIN: ROLE_MANAGER
+
 
 when@test:
     security:
